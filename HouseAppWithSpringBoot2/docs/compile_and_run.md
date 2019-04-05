@@ -4,7 +4,12 @@
 1. 安装mysql数据库
 2. 创建数据库： creata database saga;
 
-## 编译运行Alpha
+## 编译运行(For saga 0.4.0)
+java -Dspring.profiles.active=mysql -Dloader.path=./libs -Dalpha.server.host=0.0.0.0 -Dalpha.server.port=7080 -Dserver.port=6090 -Dalpha.cluster.address=localhost:7080 -D"spring.datasource.url=jdbc:mysql://localhost:3306/saga?useSSL=false&serverTimezone=Asia/Shanghai&characterEncoding=utf8" -Dspring.datasource.username=root -Dspring.datasource.password=root -jar alpha-server-0.4.0-exec.jar
+
+java -Dspring.profiles.active=mysql -Dloader.path=./libs -Dalpha.server.host=0.0.0.0 -Dalpha.server.port=7080 -Dserver.port=6090 -D"spring.datasource.url=jdbc:mysql://localhost:3306/saga?useSSL=false&serverTimezone=Asia/Shanghai&characterEncoding=utf8" -Dspring.datasource.username=root -Dspring.datasource.password=root -jar alpha-server-0.4.0-exec.jar
+
+## 编译运行Alpha (For saga 0.3.0)
 1. 下载最新Saga代码
 2. 修改alpha\alpha-server\src\main\resources\application.yaml文件.   
 配置正确的mysql信息:   
@@ -39,6 +44,9 @@ cd alpha\alpha-server\target\saga
 java -Dspring.profiles.active=mysql -D"spring.datasource.url=jdbc:mysql://localhost:3306/saga?useSSL=false" -Dspring.datasource.username=root -Dspring.datasource.password=root -jar alpha-server-0.3.0-SNAPSHOT-exec.jar
 java -Dspring.profiles.active=mysql -jar alpha-server-0.3.0-SNAPSHOT-exec.jar
 ```
+
+
+
 
 5. 检查。服务正常启动后，可以进入数据库saga. 可以看到自动生成了一些表。
 
