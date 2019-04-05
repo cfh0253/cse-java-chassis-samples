@@ -5,6 +5,9 @@ cse-config-order: 100
 spring:
   application:
     name: customer-service
+  main:
+    allow-bean-definition-overriding: true
+
 server:
   port: 9093
 
@@ -15,3 +18,8 @@ cse:
   test:
     house:
       yamlValueOverride: xyz
+      
+# alpha
+alpha:
+  cluster:
+    address: 127.0.0.1:7080

@@ -4,6 +4,8 @@ cse-config-order: 100
 spring:
   application:
     name: account-service
+  main:
+    allow-bean-definition-overriding: true
 server:
   port: 8094
 
@@ -20,3 +22,7 @@ cse:
   servlet:
     urlPattern: /*
 
+# alpha
+alpha:
+  cluster:
+    address: 127.0.0.1:7080

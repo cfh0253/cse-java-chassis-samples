@@ -1,10 +1,5 @@
 cse-config-order: 10
 
-## Spring Boot configurations
-# alpha
-alpha:
-  cluster:
-    address: 127.0.0.1:7080
 ## CSE configurations
 
 APPLICATION_ID: houseapp
@@ -43,6 +38,11 @@ cse:
   handler:
     chain:
       Provider:
-        default: qps-flowcontrol-provider,bizkeeper-provider,saga-provider
+        default: qps-flowcontrol-provider,bizkeeper-provider,pack-provider
       Consumer:
-        default: qps-flowcontrol-consumer,loadbalance,bizkeeper-consumer,saga-consumer
+        default: qps-flowcontrol-consumer,loadbalance,bizkeeper-consumer,pack-consumer
+
+  monitor:
+    client:
+      enable: false
+      

@@ -3,52 +3,19 @@
 ## 准备mysql数据库
 1. 安装mysql数据库
 2. 创建数据库： creata database saga;
+3. 假设用户名密码为root/root，注意修改
 
-## 编译运行(For saga 0.4.0)
-java -Dspring.profiles.active=mysql -Dloader.path=./libs -Dalpha.server.host=0.0.0.0 -Dalpha.server.port=7080 -Dserver.port=6090 -Dalpha.cluster.address=localhost:7080 -D"spring.datasource.url=jdbc:mysql://localhost:3306/saga?useSSL=false&serverTimezone=Asia/Shanghai&characterEncoding=utf8" -Dspring.datasource.username=root -Dspring.datasource.password=root -jar alpha-server-0.4.0-exec.jar
 
-java -Dspring.profiles.active=mysql -Dloader.path=./libs -Dalpha.server.host=0.0.0.0 -Dalpha.server.port=7080 -Dserver.port=6090 -D"spring.datasource.url=jdbc:mysql://localhost:3306/saga?useSSL=false&serverTimezone=Asia/Shanghai&characterEncoding=utf8" -Dspring.datasource.username=root -Dspring.datasource.password=root -jar alpha-server-0.4.0-exec.jar
+## 启动saga(For saga 0.4.0 +)
+1. 下载saga 0.4.0. 创建目录./plugins ，并将mysql驱动mysql-connector-java-8.0.12.jar拷贝到该目录
 
-## 编译运行Alpha (For saga 0.3.0)
-1. 下载最新Saga代码
-2. 修改alpha\alpha-server\src\main\resources\application.yaml文件.   
-配置正确的mysql信息:   
-```
-spring:
-  profiles: mysql
-  datasource:
-    username: root
-    password: root
-    url: jdbc:mysql://localhost:3306/saga?useSSL=false
-    platform: mysql
-    continue-on-error: true
-```
-
-修改服务器监听的端口（可选）
+2. 执行命令
 
 ```
-server:
-  port: 6090
-
-alpha:
-  server:
-    host: 0.0.0.0
-    port: 7080
+java -Dspring.profiles.active=mysql -Dloader.path=./plugins -Dalpha.server.host=0.0.0.0 -Dalpha.server.port=7080 -Dserver.port=6090 -Dalpha.cluster.address=localhost:7080 -D"spring.datasource.url=jdbc:mysql://localhost:3306/saga?useSSL=false&serverTimezone=Asia/Shanghai&characterEncoding=utf8" -Dspring.datasource.username=root -Dspring.datasource.password=root -jar alpha-server-0.4.0-exec.jar
 ```
 
-3. 编译项目：mvn clean install -Pmysql -DskipTests
-4. 启动Alpha
-
-```
-cd alpha\alpha-server\target\saga
-java -Dspring.profiles.active=mysql -D"spring.datasource.url=jdbc:mysql://localhost:3306/saga?useSSL=false" -Dspring.datasource.username=root -Dspring.datasource.password=root -jar alpha-server-0.3.0-SNAPSHOT-exec.jar
-java -Dspring.profiles.active=mysql -jar alpha-server-0.3.0-SNAPSHOT-exec.jar
-```
-
-
-
-
-5. 检查。服务正常启动后，可以进入数据库saga. 可以看到自动生成了一些表。
+3. 检查。服务正常启动后，可以进入数据库saga. 可以看到自动生成了一些表。
 
 ```
 mysql> show tables;
@@ -56,6 +23,7 @@ mysql> show tables;
 | Tables_in_saga        |
 +-----------------------+
 | command               |
+| master_lock           |
 | tcc_global_tx_event   |
 | tcc_participate_event |
 | tcc_tx_event          |
